@@ -11,13 +11,15 @@ A python script for personal-use that generates references in a format for a res
 # Run
 Run by passing your Google Scholar name in as a command line argument:
 
-`python references.py "John Smith"`
+`python references.py --name "John Smith"`
 
 # Example output
 
 Example output for [Jodie L. Rummer](http://scholar.google.com.au/citations?user=ynWS968AAAAJ&hl=en)
 
-`python references.py "Jodie L. Rummer"`
+`python references.py --name "Jodie Rummer"`
+
+Outputs file references-jodie-rummer.html with the follow:
 
 Citations: 2695
 h-index: 29

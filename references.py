@@ -1,4 +1,4 @@
-import sys
+import argparse
 from scholarly import scholarly
 import asyncio
 from pyppeteer import launch
@@ -37,7 +37,19 @@ def standandise_authors(authors): #prettify_authors
 
 async def main():
     # get argument passed in python commandline
-    author_name = sys.argv[1]
+    parser = argparse.ArgumentParser(description='Input full name.')
+    parser.add_argument('--name', nargs=1, metavar=('\"Full Name\"'), help='You\'re full name e.g., python references.py --name "Jodie Rummer"')
+    args = parser.parse_args()
+    if not args.name:
+        print('Please re-run with --name argument. E.g., python references.py --name "Jodie Rummer"')
+        print('See python references.py -h for more details')
+        exit()
+    author_name = args.name[0]
+    if (' ' not in author_name) == True:
+        print('Please use full name with quotes. E.g., python references.py --name "Jodie Rummer"')
+        print('See python references.py -h for more details')
+        exit()
+
     print("Getting Google Scholar ID for", author_name)
     author_id = get_author_id(author_name)
     print("Author's ID:", author_id)
@@ -69,7 +81,7 @@ async def main():
     await page.waitForSelector(selector)
 
     print("Opening file to write to")
-    with open("references.html", "w", encoding='utf8') as f:
+    with open("references-" + author_name.lower().replace(" ", "-") + ".html", "w", encoding='utf8') as f:
     #with open("resume.html", "w", encoding='ISO-8859-1') as f:
     #with open("resume.html", "w", encoding='cp1252') as f:
 
@@ -112,8 +124,8 @@ async def main():
                 journal == journal if journal.strip().lower() != "null" else ""
                 #journal == journal if journal != "Null" else ""
 
-                a = "COMPARATIVE BIOCHEMISTRY AND PHYSIOLOGY A-MOLECULAR & INTEGRATIVE PHYSIOLOGY"
-                c = "COMPARATIVE BIOCHEMISTRY AND PHYSIOLOGY C-TOXICOLOGY & PHARMACOLOGY"
+                a = "Comparative Biochemistry and Physiology A-Molecular & Integrative Physiology"
+                c = "Comparative Biochemistry and Physiology C-Toxicology & Pharmacology"
                 gscholarfixes = {
                     'Comparative Biochemistry And Physiology Part C: Toxicology & Pharmacology': c,
                     'Comparative Biochemistry And Physiology. Toxicology & Pharmacology: Cbp': c,
