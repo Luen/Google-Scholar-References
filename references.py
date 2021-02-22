@@ -133,7 +133,7 @@ async def main():
                     'Comparative Biochemistry And Physiology Part A: Molecular & Integrative Physiology': a,
                     'Comparative Biochemistry And Physiology-Part A: Molecular And Integrative Physiology': a,
                     'Comparative Biochemistry And Physiology, Part A': a,
-                    'Proceedings Of The Royal Society B: Biological Sciences': "Proceedings Of The Royal Society B: Biological Sciences",
+                    'Proceedings Of The Royal Society B: Biological Sciences': "Proceedings Of The Royal Society B-Biological Sciences",
                     'Mar Biodivers': "Marine Biodiversity",
                     'Cell Stress And Chaperones': "Cell Stress & Chaperones"
                 }
