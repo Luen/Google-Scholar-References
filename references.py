@@ -335,20 +335,18 @@ with open(
         if "pages" in pub["bib"]:
             pages = str(publication["bib"]["pages"])
         pub_url = str(publication["pub_url"])
-        dois = getDOIs(pub_url)
+        # DOIs needs a proxy or tor
+        # dois = getDOIs(pub_url)
+        dois = False
         pagesCrawled += 1
-        time.sleep(
-            10
-        )  # sleep after scraping DOIs from journal. Becuase the next journal may be the same journal and don't want to reqest too many at once
+        time.sleep(10)  # sleep after scraping DOIs from journal. Becuase the next journal may be the same journal and don't want to reqest too many at once. TODO: Proxy or Tor
         doi = ""
         if dois:
             doi = str(dois[0])
             pagesCrawled += 1  # checkDOI()
             if not checkDOI(doi, pub_url):
                 pagesCrawled += 1  # fallbackCheckDOI()
-                time.sleep(
-                    60
-                )  # sleep after scraping DOIs from journal. Too many requests and you get a HTTP Error 403: Forbidden
+                time.sleep(60)  # sleep after scraping DOIs from journal. Too many requests and you get a HTTP Error 403: Forbidden
                 if not fallbackCheckDOI(doi, pub_url):
                     doi = ""
 
