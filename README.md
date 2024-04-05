@@ -1,6 +1,8 @@
 # Google Scholar References
 A python script for personal-use that generates references in a format for a resume/curriculum vitae for professors / academics / scholars
 
+See also Zotera, an open source citation manager
+
 # Install
 - Download this git repository
 - Install [Python](https://www.python.org/downloads/)
